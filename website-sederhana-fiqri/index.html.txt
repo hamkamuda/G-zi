@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G-zi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>G-zi</h1>
+        <nav>
+            <a href="#imt">IMT</a>
+            <a href="#bbi">BB Ideal</a>
+            <a href="#rekomendasi">Rekomendasi Makanan</a>
+            <a href="#info">Informasi Gizi</a>
+            <a href="#kontak">Kontak</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="imt">
+            <h2>Perhitungan Indeks Massa Tubuh (IMT)</h2>
+            <label>Berat Badan (kg): <input type="number" id="berat"></label><br>
+            <label>Tinggi Badan (cm): <input type="number" id="tinggi"></label><br>
+            <button onclick="hitungIMT()">Hitung IMT</button>
+            <p id="hasil-imt"></p>
+        </section>
+
+        <section id="bbi">
+            <h2>Perhitungan Berat Badan Ideal</h2>
+            <label>Tinggi Badan (cm): <input type="number" id="tinggi-bbi"></label><br>
+            <button onclick="hitungBBI()">Hitung BBI</button>
+            <p id="hasil-bbi"></p>
+        </section>
+
+        <section id="rekomendasi">
+            <h2>Rekomendasi Makanan</h2>
+            <label>Pilih Kelompok Usia: </label>
+            <select onchange="tampilkanMakanan(this.value)">
+                <option value="">-- Pilih --</option>
+                <option value="anak">Makanan Anak</option>
+                <option value="remaja">Makanan Remaja</option>
+                <option value="dewasa">Makanan Dewasa</option>
+                <option value="lansia">Makanan Lansia</option>
+                <option value="hamil">Makanan Ibu Hamil</option>
+            </select>
+            <ul id="daftar-makanan" class="food-list"></ul>
+        </section>
+
+        <section id="info">
+            <h2>Informasi Gizi</h2>
+            <ul>
+                <li><a href="https://gizi.depkes.go.id" target="_blank">Berita dari Kemenkes</a></li>
+                <li><a href="https://www.who.int/health-topics/nutrition" target="_blank">WHO - Nutrition</a></li>
+                <li><a href="https://www.ncbi.nlm.nih.gov/pmc/?term=nutrition+research" target="_blank">Penelitian Gizi Terbaru</a></li>
+            </ul>
+        </section>
+
+        <section id="kontak">
+            <h2>Kontak</h2>
+            <p>Email: <a href="mailto:01012001.fiqri@gmail.com">01012001.fiqri@gmail.com</a></p>
+            <p>Instagram: <a href="https://instagram.com/fiqriseptrian" target="_blank">@fiqriseptrian</a></p>
+            <p>LinkedIn: <a href="https://linkedin.com/in/fiqriseptrian" target="_blank">Fiqri Septrian</a></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 G-zi</p>
+    </footer>
+
+    <script>
+        function hitungIMT() {
+            const berat = parseFloat(document.getElementById("berat").value);
+            const tinggi = parseFloat(document.getElementById("tinggi").value) / 100;
+            if (!berat || !tinggi) return alert("Mohon isi berat dan tinggi dengan benar.");
+            const imt = berat / (tinggi * tinggi);
+            let kategori = "";
+            if (imt < 18.5) kategori = "Kurus";
+            else if (imt < 25) kategori = "Normal";
+            else if (imt < 30) kategori = "Gemuk";
+            else kategori = "Obesitas";
+            document.getElementById("hasil-imt").innerText = `IMT Anda: ${imt.toFixed(2)} (${kategori})`;
+        }
+
+        function hitungBBI() {
+            const tinggi = parseFloat(document.getElementById("tinggi-bbi").value);
+            if (!tinggi) return alert("Mohon isi tinggi badan dengan benar.");
+            const bbi = (tinggi - 100) - ((tinggi - 100) * 0.1);
+            document.getElementById("hasil-bbi").innerText = `Berat Badan Ideal Anda: ${bbi.toFixed(1)} kg`;
+        }
+
+        const rekomendasi = {
+            anak: ["Susu tinggi kalsium", "Sayuran berwarna", "Buah segar", "Telur", "Ikan laut"],
+            remaja: ["Sereal penuh serat", "Protein tinggi (ayam, tempe)", "Sayur dan buah", "Air putih cukup"],
+            dewasa: ["Karbohidrat kompleks (nasi merah)", "Sayur hijau", "Ikan", "Buah rendah gula"],
+            lansia: ["Bubur atau makanan lunak", "Sayuran rebus", "Buah potong", "Susu rendah lemak"],
+            hamil: ["Asam folat (bayam, kacang)", "Protein tinggi", "Buah-buahan segar", "Susu ibu hamil"]
+        };
+
+        function tampilkanMakanan(kelompok) {
+            const list = document.getElementById("daftar-makanan");
+            list.innerHTML = "";
+            if (rekomendasi[kelompok]) {
+                rekomendasi[kelompok].forEach(makanan => {
+                    const li = document.createElement("li");
+                    li.textContent = makanan;
+                    list.appendChild(li);
+                });
+            }
+        }
+    </script>
+</body>
+</html>

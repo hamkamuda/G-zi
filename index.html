@@ -13,19 +13,16 @@
       color: #103e26;
       scroll-behavior: smooth;
     }
-
     header {
       background-color: #2e7d32;
       color: #fff;
       padding: 40px 20px;
       text-align: center;
     }
-
     header h1 {
       font-size: 3em;
       margin-bottom: 10px;
     }
-
     nav ul {
       list-style-type: none;
       padding: 0;
@@ -34,34 +31,28 @@
       gap: 20px;
       flex-wrap: wrap;
     }
-
     nav a {
       color: #ffffff;
       text-decoration: none;
       font-weight: bold;
       padding: 8px 12px;
     }
-
     nav a:hover {
       background-color: #1b5e20;
       border-radius: 5px;
     }
-
     .hero {
       background-color: #c8e6c9;
       text-align: center;
       padding: 60px 20px;
     }
-
     .hero h2 {
       font-size: 2em;
       margin-bottom: 10px;
     }
-
     main {
       padding: 20px;
     }
-
     section {
       margin-bottom: 60px;
       padding: 30px;
@@ -69,21 +60,17 @@
       border-radius: 10px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
-
     section:nth-child(even) {
       background-color: #f1f8f4;
     }
-
     h2 {
       color: #1b5e20;
     }
-
     input[type="number"] {
       padding: 8px;
       margin: 5px 0;
       width: 200px;
     }
-
     button {
       padding: 10px 15px;
       background-color: #2e7d32;
@@ -92,36 +79,41 @@
       cursor: pointer;
       border-radius: 5px;
     }
-
     button:hover {
       background-color: #1b5e20;
     }
-
     ul {
       padding-left: 20px;
     }
-
     .card-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 20px;
       margin-top: 20px;
     }
-
     .card {
       background-color: #e8f5e9;
       padding: 15px;
       border-radius: 10px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      cursor: pointer;
+      text-align: center;
     }
-
+    .gallery {
+      display: none;
+      margin-top: 20px;
+    }
+    .gallery img {
+      width: 150px;
+      margin: 10px;
+      border-radius: 10px;
+    }
     footer {
       background-color: #2e7d32;
       color: white;
       text-align: center;
       padding: 20px;
     }
-
     footer a {
       color: #c8e6c9;
     }
@@ -165,11 +157,41 @@
     <section id="rekomendasi">
       <h2>Rekomendasi Makanan</h2>
       <div class="card-grid">
-        <div class="card">Makanan Anak</div>
-        <div class="card">Makanan Remaja</div>
-        <div class="card">Makanan Dewasa</div>
-        <div class="card">Makanan Lansia</div>
-        <div class="card">Makanan Ibu Hamil</div>
+        <div class="card" onclick="toggleGallery('anak')">Makanan Anak</div>
+        <div class="card" onclick="toggleGallery('remaja')">Makanan Remaja</div>
+        <div class="card" onclick="toggleGallery('dewasa')">Makanan Dewasa</div>
+        <div class="card" onclick="toggleGallery('lansia')">Makanan Lansia</div>
+        <div class="card" onclick="toggleGallery('hamil')">Makanan Ibu Hamil</div>
+      </div>
+
+      <div id="gallery-anak" class="gallery">
+        <img src="https://via.placeholder.com/150?text=Buah+Anak" alt="Buah Anak">
+        <img src="https://via.placeholder.com/150?text=Sayur+Anak" alt="Sayur Anak">
+        <p>Makanan kaya vitamin dan mudah dikunyah</p>
+      </div>
+
+      <div id="gallery-remaja" class="gallery">
+        <img src="https://via.placeholder.com/150?text=Sereal+Remaja" alt="Sereal Remaja">
+        <img src="https://via.placeholder.com/150?text=Protein+Remaja" alt="Protein Remaja">
+        <p>Makanan tinggi energi dan protein untuk pertumbuhan</p>
+      </div>
+
+      <div id="gallery-dewasa" class="gallery">
+        <img src="https://via.placeholder.com/150?text=Karbohidrat+Seimbang" alt="Karbohidrat Seimbang">
+        <img src="https://via.placeholder.com/150?text=Sayur+Sehat" alt="Sayur Sehat">
+        <p>Makanan seimbang untuk aktivitas harian</p>
+      </div>
+
+      <div id="gallery-lansia" class="gallery">
+        <img src="https://via.placeholder.com/150?text=Sup+Lembut" alt="Sup Lembut">
+        <img src="https://via.placeholder.com/150?text=Buah+Lunak" alt="Buah Lunak">
+        <p>Makanan mudah dicerna, kaya serat dan cairan</p>
+      </div>
+
+      <div id="gallery-hamil" class="gallery">
+        <img src="https://via.placeholder.com/150?text=Susu+Ibu" alt="Susu Ibu">
+        <img src="https://via.placeholder.com/150?text=Sayur+Hijau" alt="Sayur Hijau">
+        <p>Makanan dengan asam folat, zat besi, dan protein tinggi</p>
       </div>
     </section>
 
@@ -205,7 +227,12 @@
       const bbi = (tinggi - 100) - (0.1 * (tinggi - 100));
       document.getElementById('hasilBBI').innerText = `BBI Anda: ${bbi.toFixed(1)} kg`;
     }
+
+    function toggleGallery(kategori) {
+      const allGalleries = document.querySelectorAll('.gallery');
+      allGalleries.forEach(g => g.style.display = 'none');
+      document.getElementById('gallery-' + kategori).style.display = 'block';
+    }
   </script>
 </body>
 </html>
-

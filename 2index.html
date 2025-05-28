@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>G-zi - Portal Gizi</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #e6f4ea;
+      color: #103e26;
+    }
+
+    header {
+      background-color: #2e7d32;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    section {
+      margin-bottom: 40px;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: #1b5e20;
+    }
+
+    input[type="number"] {
+      padding: 8px;
+      margin: 5px 0;
+      width: 200px;
+    }
+
+    button {
+      padding: 10px 15px;
+      background-color: #2e7d32;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #1b5e20;
+    }
+
+    footer {
+      background-color: #2e7d32;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    footer a {
+      color: #c8e6c9;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>G-zi</h1>
+    <nav>
+      <ul>
+        <li><a href="#imt">Indeks Massa Tubuh</a></li>
+        <li><a href="#bbi">Berat Badan Ideal</a></li>
+        <li><a href="#rekomendasi">Rekomendasi Makanan</a></li>
+        <li><a href="#info">Informasi Gizi</a></li>
+        <li><a href="#kontak">Kontak</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="imt">
+      <h2>Perhitungan Indeks Massa Tubuh (IMT)</h2>
+      <input type="number" id="berat" placeholder="Berat (kg)"> <br>
+      <input type="number" id="tinggi" placeholder="Tinggi (cm)"> <br>
+      <button onclick="hitungIMT()">Hitung</button>
+      <p id="hasilIMT"></p>
+    </section>
+
+    <section id="bbi">
+      <h2>Perhitungan Berat Badan Ideal</h2>
+      <input type="number" id="tinggiBBI" placeholder="Tinggi (cm)"> <br>
+      <button onclick="hitungBBI()">Hitung</button>
+      <p id="hasilBBI"></p>
+    </section>
+
+    <section id="rekomendasi">
+      <h2>Rekomendasi Makanan</h2>
+      <ul>
+        <li>Makanan Anak</li>
+        <li>Makanan Remaja</li>
+        <li>Makanan Dewasa</li>
+        <li>Makanan Lansia</li>
+        <li>Makanan Ibu Hamil</li>
+      </ul>
+    </section>
+
+    <section id="info">
+      <h2>Informasi Gizi</h2>
+      <p>Berita dan penemuan terbaru seputar gizi akan ditampilkan di sini.</p>
+    </section>
+  </main>
+
+  <footer id="kontak">
+    <h2>Kontak</h2>
+    <p>Email: <a href="mailto:01012001.fiqri@gmail.com">01012001.fiqri@gmail.com</a></p>
+    <p>Instagram: <a href="https://instagram.com/username" target="_blank">@username</a></p>
+    <p>LinkedIn: <a href="https://linkedin.com/in/username" target="_blank">Profil LinkedIn</a></p>
+    <p>&copy; 2025 G-zi. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function hitungIMT() {
+      const berat = parseFloat(document.getElementById('berat').value);
+      const tinggi = parseFloat(document.getElementById('tinggi').value) / 100;
+      if (!berat || !tinggi) return alert('Masukkan data yang valid');
+      const imt = berat / (tinggi * tinggi);
+      document.getElementById('hasilIMT').innerText = IMT Anda: ${imt.toFixed(2)};
+    }
+
+    function hitungBBI() {
+      const tinggi = parseFloat(document.getElementById('tinggiBBI').value);
+      if (!tinggi) return alert('Masukkan tinggi yang valid');
+      const bbi = (tinggi - 100) - (0.1 * (tinggi - 100));
+      document.getElementById('hasilBBI').innerText = BBI Anda: ${bbi.toFixed(1)} kg;
+    }
+  </script>
+</body>
+</html>
+<style>
+  section {
+    height: 100vh; /* Layer per layar penuh */
+    scroll-snap-align: start;
+  }
+
+  main {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: calc(100vh - 80px); /* Menyesuaikan dengan tinggi header */
+  }
+
+  html, body {
+    height: 100%;
+    margin: 0;
+  }
+</style>
